@@ -4,6 +4,8 @@ import { promises as fs } from "fs";
 import NYC from "nyc";
 import configUtil from "nyc/lib/config-util.js";
 
+const { parserPlugins } = require("@istanbuljs/schema").defaults.nyc;
+
 export type IstanbulPluginPreloader = (args: {
 	path: string;
 }) => Promise<{ contents: string }>;
@@ -33,6 +35,7 @@ const bunPluginIstanbul = ({
 			const { argv } = await configUtil();
 			const nyc = new NYC({
 				...argv,
+				parserPlugins: parserPlugins.concat("typescript", "jsx"),
 			});
 
 			const { contents: inCode } = await (preloader || defaultPreloader)(args);
