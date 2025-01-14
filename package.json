@@ -1,0 +1,46 @@
+{
+  "name": "bun-plugin-istanbul",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "description": "Bun plugin to instrument your code for nyc/istanbul code coverage",
+  "keywords": [
+    "bun",
+    "plugin",
+    "bundling",
+    "loader",
+    "loading",
+    "javascript",
+    "jsx",
+    "typescript",
+    "tsx",
+    "istanbul",
+    "nyc"
+  ],
+  "homepage": "https://github.com/hedaukartik/bun-plugin-istanbul#readme",
+  "bugs": {
+    "url": "https://github.com/hedaukartik/bun-plugin-istanbul/issues"
+  },
+  "author": {
+    "name": "Kartik Hedau",
+    "email": "kartikhedauart@gmail.com"
+  },
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "build": "bun run build.ts"
+  },
+  "dependencies": {
+    "nyc": "^17.1.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "bun-plugin-dts": "^0.3.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
