@@ -46,6 +46,16 @@ await bun.build({
 });
 ```
 
+## Example Repository
+
+To better understand how to use `bun-plugin-istanbul` in a real-world scenario, refer to the example repository: [bun-react-playwright-coverage](https://github.com/hedaukartik/bun-react-playwright-coverage).
+
+The repository demonstrates how to:
+
+1. **Integrate `bun-plugin-istanbul` with a Bun project** to enable code instrumentation for coverage reports.
+2. **Combine it with Playwright** for end-to-end testing.
+3. **Generate coverage reports** to track test coverage metrics for React components.
+
 ## License
 
 [MIT](./LICENSE)
