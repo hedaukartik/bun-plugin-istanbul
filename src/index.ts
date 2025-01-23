@@ -30,18 +30,25 @@ const bunPluginIstanbul = ({
 	name,
 	setup(build) {
 		build.onLoad({ filter }, async (args) => {
-			if (args.path.includes("node_modules")) return;
+			try {
+				if (args.path.includes("node_modules")) return;
+				const { argv } = await configUtil();
+				const nyc = new NYC({
+					...argv,
+					parserPlugins: parserPlugins.concat("typescript", "jsx"),
+				});
 
-			const { argv } = await configUtil();
-			const nyc = new NYC({
-				...argv,
-				parserPlugins: parserPlugins.concat("typescript", "jsx"),
-			});
+				const { contents: inCode } = await (preloader || defaultPreloader)(
+					args
+				);
 
-			const { contents: inCode } = await (preloader || defaultPreloader)(args);
-			const outCode = nyc._transform(inCode, args.path) || inCode;
+				const outCode = nyc._transform(inCode, args.path) || inCode;
 
-			return { contents: outCode, loader };
+				return { contents: outCode, loader };
+			} catch (error) {
+				console.error(error);
+				throw Error("Error");
+			}
 		});
 	},
 });
